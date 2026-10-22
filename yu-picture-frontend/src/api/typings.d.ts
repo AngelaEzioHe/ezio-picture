@@ -310,17 +310,10 @@ declare namespace API {
   }
 
   type Parameters = {
-    addWatermark?: boolean
-    angle?: number
-    bestQuality?: boolean
-    bottomOffset?: number
-    leftOffset?: number
-    limitImageSize?: boolean
-    outputRatio?: string
-    rightOffset?: number
-    topOffset?: number
-    xScale?: number
-    yScale?: number
+    topScale?: number
+    bottomScale?: number
+    leftScale?: number
+    rightScale?: number
   }
 
   type Picture = {

@@ -3,6 +3,7 @@ package com.yupi.yupicturebackend.api.aliyunai.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 /**
  * 查询扩图任务响应类
@@ -69,6 +70,9 @@ public class GetOutPaintingTaskResponse {
          */
         private String outputImageUrl;
 
+        /** 万相返回的图片列表，适配后仍通过 outputImageUrl 提供给前端。 */
+        private List<Result> results;
+
         /**
          * 接口错误码
          * <p>接口成功请求不会返回该参数</p>
@@ -85,6 +89,13 @@ public class GetOutPaintingTaskResponse {
          * 任务指标信息
          */
         private TaskMetrics taskMetrics;
+    }
+
+    @Data
+    public static class Result {
+        private String url;
+        private String code;
+        private String message;
     }
 
     /**

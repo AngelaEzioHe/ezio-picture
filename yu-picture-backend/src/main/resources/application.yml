@@ -7,21 +7,12 @@ server:
       cookie:
         max-age: 2592000
 spring:
+  profiles:
+    # 本地凭证放在 application-local.yml；指定其他 profile 时不会默认加载 local。
+    default: local
   application:
     name: yu-picture-backend
-  # 数据库配置
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yu_picture
-    username: root
-    password: 123456
-  # Redis 配置
-  redis:
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    timeout: 5000
-  # Session 配置
+  # 数据库、Redis 和分表数据源配置见 application-local.yml。
   session:
     store-type: redis
     # session 30 天后过期
@@ -32,14 +23,6 @@ spring:
       max-file-size: 10MB
   # 空间图片分表
   shardingsphere:
-    datasource:
-      names: yu_picture
-      yu_picture:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/yu_picture
-        username: root
-        password: 123456
     rules:
       sharding:
         tables:
@@ -80,15 +63,6 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.yupi.yupicturebackend.controller
-## 对象存储配置（需要从腾讯云获取）
-#cos:
-#  client:
-#    host: xxx
-#    secretId: xxx
-#    secretKey: xxx
-#    region: xxx
-#    bucket: xxx
+          -
 
-## 阿里云 AI 配置
-#aliYunAi:
-#  apiKey: xxx
+# COS 与阿里云 AI 凭证见 application-local.yml（已由 Git 忽略）。
